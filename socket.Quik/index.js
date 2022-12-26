@@ -19,7 +19,7 @@ class quikSocket extends EventEmitter {
         let message = '';
         
         socket.on('error',data => {
-        console.log(data)
+            console.log(data)
         })
     
         socket.on('end', data => {

@@ -131,6 +131,12 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         clients.splice(clients.indexOf(socket.id), 1);
+        for (const [key, value] of subscribes) {
+            value.delete(socket.id);
+            if(!value.size) {
+                subscribes.delete(key);
+            }
+        }
         console.log(`Client with id ${socket.id} disconnected`);
     })
 })
