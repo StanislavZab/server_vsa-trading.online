@@ -58,12 +58,13 @@ tcp_server.on('NewCandle', data => {
 
 tcp_server.on('UpdateCandle', data => {
     const key = `${data.class}|${data.sec}|${data.interval}`;
-    console.log(key)
-
+    
     if(subscribes.has(key)) {
+        console.log(key)
         const subCode = subscribes.get(key);
 
         subCode.forEach(id => {
+            console.log(id);
             io.in(id).emit('updateCandle', data);
         });
     }
